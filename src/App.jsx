@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import './App.css'
+// import './App.css' // native styles disabled — demo is styled solely by the remote AutoCSS stylesheets (see index.html)
 
 // This framework's own data layer: fetch its data at runtime.
 // import.meta.env.BASE_URL keeps the path correct under the GitHub Pages

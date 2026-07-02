@@ -59,6 +59,12 @@ GitHub Pages: <https://autocss-com.github.io/react/>
   content-level elements (`h1`, tagline, `h2`, intro, `<table>`) placed **inside
   `<article>`**.
 
+### Native stylesheets commented out
+- The framework's own stylesheets are **commented out** so the remote AutoCSS
+  stylesheets are the sole source of styling: `import './index.css'` in
+  `src/main.jsx` and `import './App.css'` in `src/App.jsx`. The CSS files are
+  kept in the repo for easy re-enable.
+
 ### React-specific wiring (the gotchas)
 - **Mount node changed from `<div id="root">` to `<app-container id="root">`**
   (`index.html`), and `App` returns the scaffold's **children** (a fragment) with
