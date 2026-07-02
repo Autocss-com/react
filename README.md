@@ -66,11 +66,13 @@ GitHub Pages: <https://autocss-com.github.io/react/>
   kept in the repo for easy re-enable.
 
 ### React-specific wiring (the gotchas)
-- **Mount node changed from `<div id="root">` to `<app-container id="root">`**
-  (`index.html`), and `App` returns the scaffold's **children** (a fragment) with
-  no nested `<app-container>` and no wrapper `<div>`. This makes `<app-container>`
-  the real Holy-Grail layout root that AutoCSS's `layout.css` styles as a grid.
-  (`src/main.jsx` is unchanged — it still mounts on `getElementById('root')`.)
+- **Mount into the `<app-container>` element — no id hook.** `index.html`'s body
+  is just `<app-container></app-container>` (the `<div id="root">` and its `id`
+  are gone), and `src/main.jsx` mounts with
+  `createRoot(document.querySelector('app-container'))` (was
+  `getElementById('root')`). `App` returns the scaffold's **children** (a
+  fragment), so `<app-container>` is the real Holy-Grail layout root that
+  AutoCSS's `layout.css` styles as a grid.
 - **`checked` → `defaultChecked`** on the static scaffold inputs (the "Layouts"
   checkbox and the "System" color-scheme radio). React warns about a `checked`
   input with no `onChange`; these are display-only/uncontrolled inputs.
