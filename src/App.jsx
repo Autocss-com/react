@@ -27,44 +27,122 @@ function App() {
   const record = records[0]
   const columns = record?.items?.length ? Object.keys(record.items[0]) : []
 
+  // Default AutoCSS Holy-Grail scaffold (app-container down to <article>).
+  // The framework's own content-level elements live inside <article>.
   return (
-    <main>
+    <app-container>
+      <app-banner></app-banner>
       <header>
-        <h1>React data layer</h1>
-        <p className="tag">
-          A standard Vite&nbsp;+&nbsp;React instance rendering its own data
-          &mdash; the back-end reference for the AutoCSS remote-rendering demo.
-        </p>
+        <app-logo></app-logo>
+        <label>
+          Layouts
+          <input type="checkbox" defaultChecked />
+        </label>
+        <label aria-label="Light color scheme">
+          {'☼'} Light
+          <input type="radio" aria-hidden="true" name="color-scheme" value="light" />
+        </label>
+        <label aria-label="Dark color scheme">
+          {'☾'} Dark
+          <input type="radio" aria-hidden="true" name="color-scheme" value="dark" />
+        </label>
+        <label aria-label="System color scheme">
+          {'◐'} System
+          <input type="radio" aria-hidden="true" name="color-scheme" value="system" defaultChecked />
+        </label>
       </header>
-
-      {status === 'loading' && <p role="status">Loading data&hellip;</p>}
-      {status === 'error' && <p role="alert">Could not load data.</p>}
-
-      {status === 'ready' && record && (
+      <nav>
+        <details open>
+          <summary></summary>
+          <section>
+            <label><input type="radio" aria-hidden="true" name="nav" value="manage" /></label>
+            <label><input type="radio" aria-hidden="true" name="nav" value="faqs" /></label>
+          </section>
+        </details>
+        <details open>
+          <summary></summary>
+          <section>
+            <label><input type="radio" aria-hidden="true" name="nav" value="api-registration" /></label>
+            <label><input type="radio" aria-hidden="true" name="nav" value="audit" /></label>
+            <label><input type="radio" aria-hidden="true" name="nav" value="option-set" /></label>
+            <label><input type="radio" aria-hidden="true" name="nav" value="option-types" /></label>
+            <label><input type="radio" aria-hidden="true" name="nav" value="scope-type" /></label>
+            <label><input type="radio" aria-hidden="true" name="nav" value="server-types" /></label>
+            <label><input type="radio" aria-hidden="true" name="nav" value="servers" /></label>
+            <label><input type="radio" aria-hidden="true" name="nav" value="credentials" /></label>
+            <label><input type="radio" aria-hidden="true" name="nav" value="variables" /></label>
+            <label><input type="radio" aria-hidden="true" name="nav" value="settings" /></label>
+          </section>
+        </details>
+      </nav>
+      <main>
         <article>
-          <h2>{record.title}</h2>
-          <p className="intro">{record.intro}</p>
-          <table>
-            <thead>
-              <tr>
-                {columns.map((column) => (
-                  <th key={column}>{column}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {record.items.map((item) => (
-                <tr key={item.id}>
-                  {columns.map((column) => (
-                    <td key={column}>{item[column]}</td>
+          <h1>React data layer</h1>
+          <p className="tag">
+            A standard Vite&nbsp;+&nbsp;React instance rendering its own data
+            inside the remote AutoCSS scaffold.
+          </p>
+
+          {status === 'loading' && <p role="status">Loading data&hellip;</p>}
+          {status === 'error' && <p role="alert">Could not load data.</p>}
+
+          {status === 'ready' && record && (
+            <>
+              <h2>{record.title}</h2>
+              <p className="intro">{record.intro}</p>
+              <table>
+                <thead>
+                  <tr>
+                    {columns.map((column) => (
+                      <th key={column}>{column}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {record.items.map((item) => (
+                    <tr key={item.id}>
+                      {columns.map((column) => (
+                        <td key={column}>{item[column]}</td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                </tbody>
+              </table>
+            </>
+          )}
         </article>
-      )}
-    </main>
+      </main>
+      <aside>
+        <h2 aria-live="polite">DETAILS</h2>
+        <label role="button" aria-label="Close">
+          <input type="checkbox" />
+          {'✖'}
+        </label>
+        <form>
+          <fieldset></fieldset>
+          <p aria-live="polite"></p>
+          <small>Note: Ensure all fields are filled correctly before submitting.</small>
+          <small>Note: All fields marked with * are required.</small>
+          <label role="button" aria-label="Delete">
+            Delete
+            <input type="checkbox" />
+          </label>
+          <label role="button" aria-label="Reset">
+            Reset
+            <input type="checkbox" />
+          </label>
+          <label role="button" aria-label="Save">
+            Save
+            <input type="checkbox" />
+          </label>
+        </form>
+      </aside>
+      <footer>
+        <app-legal></app-legal>
+        <app-version></app-version>
+      </footer>
+      <app-banner></app-banner>
+    </app-container>
   )
 }
 
