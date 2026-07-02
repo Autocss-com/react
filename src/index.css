@@ -34,12 +34,6 @@ body {
   margin: 0;
 }
 
-/* Let the AutoCSS <app-container> Holy-Grail grid be the layout root
-   (the React mount node is transparent to layout). */
-#root {
-  display: contents;
-}
-
 h1,
 h2 {
   font-weight: 600;

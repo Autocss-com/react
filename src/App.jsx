@@ -27,10 +27,11 @@ function App() {
   const record = records[0]
   const columns = record?.items?.length ? Object.keys(record.items[0]) : []
 
-  // Default AutoCSS Holy-Grail scaffold (app-container down to <article>).
+  // Default AutoCSS Holy-Grail scaffold. <app-container id="root"> is the
+  // mount node in index.html, so App renders its children directly here.
   // The framework's own content-level elements live inside <article>.
   return (
-    <app-container>
+    <>
       <app-banner></app-banner>
       <header>
         <app-logo></app-logo>
@@ -142,7 +143,7 @@ function App() {
         <app-version></app-version>
       </footer>
       <app-banner></app-banner>
-    </app-container>
+    </>
   )
 }
 
