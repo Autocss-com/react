@@ -1,16 +1,29 @@
-# React + Vite
+# AutoCSS demo — React data layer
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A standard **Vite + React** instance that renders its own sample data. It is the
+React back-end reference for the [AutoCSS](https://autocss.com) remote-rendering
+demo: *have UI, bring your own data — one UI, many back-ends.*
 
-Currently, two official plugins are available:
+**Stage 1 (this repo today):** the app fetches `public/data/records.json` — the
+same JSON shape the AutoCSS UI consumes (`[{ id, title, intro, items: [] }]`) —
+and renders it as a table with loading/error states. No AutoCSS attached yet.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Stage 2 (later):** the remote AutoCSS UI is attached to render this same data.
 
-## React Compiler
+## Develop
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev
+```
 
-## Expanding the Oxlint configuration
+## Build
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```bash
+npm run build   # outputs dist/ (base path /react/)
+```
+
+## Deploy
+
+On push to `main`, a GitHub Actions workflow builds and publishes `dist/` to
+GitHub Pages: <https://autocss-com.github.io/react/>
