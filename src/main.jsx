@@ -1,9 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-// import './index.css' // native styles disabled — demo is styled solely by the remote AutoCSS stylesheets (see index.html)
 import App from './App.jsx'
 
-createRoot(document.querySelector('app-container')).render(
+// React here is a DATA LAYER, not a view — it owns no visual DOM node. Mount on
+// a detached container so the framework never claims AutoCSS's <main><article>
+// render target; the component fetches/prepares data and renders no UI.
+createRoot(document.createElement('app-data')).render(
   <StrictMode>
     <App />
   </StrictMode>,
